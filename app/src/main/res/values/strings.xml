@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MP_TermProject</string>
+    <string name="app_name">coffeeMaker</string>
     <string name="order0">전 얼죽아예요.</string><!--아이스 아메리카노-->
     <string name="order1">블랙 커피. 뜨겁게.</string><!--핫 아메리카노-->
     <string name="order2">시원한 라떼 하나 주세요.</string><!--아이스 라떼-->
