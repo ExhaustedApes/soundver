@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +20,7 @@ public class StoreHall extends AppCompatActivity {
     TextView clientOrder;//손님 주문 대사
     Button moveKitchen, reStart;//눌렀을 때 kitchen.class, StoreHall2.class로 가는 버튼
     Beverage userBeverage;//이용자가 생성한 음료
+    LinearLayout backGroundImg;
 
 
     int getIntent=0;//Kitchen에서 Intent 받았는지 확인용 변수
@@ -26,9 +28,11 @@ public class StoreHall extends AppCompatActivity {
     int order=-1;//무작위로 생성되는 손님의 주문
     int clientNum =-1;//무작위로 생성되는 손님 이미지
     int time;//무작위로 생성되는 손님의 방문까지 걸리는 시간
+    int weather =-1;
 
     int past_order;//손님이 주문했던 내용
     int past_client;//방문했던 손님 이미지
+    int past_weather=-1;
 
     Boolean waterOn, milkOn, coffeeOn, iceOn, vanillaOn, lemonOn;//제조음료의 재료 포함 여부
 
@@ -46,14 +50,20 @@ public class StoreHall extends AppCompatActivity {
         clientOrder=(TextView)findViewById(R.id.Order);
         moveKitchen=(Button)findViewById(R.id.Make);
         reStart=(Button)findViewById(R.id.getNewCliet);
+        backGroundImg=(LinearLayout)findViewById(R.id.bg);
+
+
+        Random random = new Random();
 
         firstIntent = getIntent();
         getIntent = firstIntent.getIntExtra("intent_index", 0);
         past_order = firstIntent.getIntExtra("order_index", -1);
         past_client = firstIntent.getIntExtra("client_idx", -1);
+        past_weather = firstIntent.getIntExtra("weather_idx", -1);
 
         if(getIntent==1) {
 
+            showWeather(past_weather);
             //주문했던 손님의 이미지 다시 표시
             showClient(past_order, past_client, 0, getIntent, clientImg, clientOrder, moveKitchen);
             //이용자가 만든 음료 완성도 확인
@@ -74,12 +84,13 @@ public class StoreHall extends AppCompatActivity {
         }
 
         if(getIntent!=1) {
-            Random random = new Random();
             time = random.nextInt(5000);
 
             order = random.nextInt(10);
             clientNum = random.nextInt(7);
+            weather = random.nextInt(4);
 
+            showWeather(weather);
             //손님의 주문 표시
             showOrder(order);
             //손님 이미지 표시
@@ -92,6 +103,7 @@ public class StoreHall extends AppCompatActivity {
                 secondIntent = new Intent(getApplicationContext(), StoreKitchen.class);
                 secondIntent.putExtra("order_idx", order);
                 secondIntent.putExtra("client_idx", clientNum);
+                secondIntent.putExtra("weather_idx", weather);
                 startActivity(secondIntent);
             }
         });
@@ -280,6 +292,12 @@ public class StoreHall extends AppCompatActivity {
             }
         }, time+1000);
 
+    }
+    private void showWeather(Integer weather) {
+        if(weather==0) backGroundImg.setBackgroundResource(R.drawable.hall_rain);
+        else if(weather==1) backGroundImg.setBackgroundResource(R.drawable.hall_night);
+        else if(weather==2) backGroundImg.setBackgroundResource(R.drawable.hall_night_rain);
+        else backGroundImg.setBackgroundResource(R.drawable.hall_day);
     }
 
 }
