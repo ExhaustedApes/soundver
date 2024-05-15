@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
                 if (error != null) {
                     if (error instanceof KakaoSdkError && ((KakaoSdkError) error).isInvalidTokenError()) {
                         // 로그인 필요
-                        // 카카오톡이 설치되어 있는지 확인하는 메서드 , 카카오에서 제공함. 콜백 객체를 이용합.
                         Function2<OAuthToken,Throwable, Unit> callback = new Function2<OAuthToken, Throwable, Unit>() {
                             @Override
                             // 콜백 메서드 ,
@@ -48,18 +47,15 @@ public class MainActivity extends AppCompatActivity {
                                 if(oAuthToken!=null){
                                     // 토큰이 전달된다면 로그인이 성공한 것이고 토큰이 전달되지 않으면 로그인 실패한다.
                                     updateKakaoLoginUi();
-
                                 }else {
                                     //로그인 실패
                                     Log.e(TAG, "invoke: login fail" );
                                 }
-
                                 return null;
                             }
                         };
                     } else {
                         // 기타 에러
-                        // 카카오톡이 설치되어 있는지 확인하는 메서드 , 카카오에서 제공함. 콜백 객체를 이용합.
                         Function2<OAuthToken,Throwable, Unit> callback = new Function2<OAuthToken, Throwable, Unit>() {
                             @Override
                             // 콜백 메서드 ,
@@ -69,12 +65,10 @@ public class MainActivity extends AppCompatActivity {
                                 if(oAuthToken!=null){
                                     // 토큰이 전달된다면 로그인이 성공한 것이고 토큰이 전달되지 않으면 로그인 실패한다.
                                     updateKakaoLoginUi();
-
                                 }else {
                                     //로그인 실패
                                     Log.e(TAG, "invoke: login fail" );
                                 }
-
                                 return null;
                             }
                         };
@@ -87,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
             });
         } else {
             // 로그인 필요
-            // 카카오톡이 설치되어 있는지 확인하는 메서드 , 카카오에서 제공함. 콜백 객체를 이용합.
             Function2<OAuthToken,Throwable, Unit> callback = new Function2<OAuthToken, Throwable, Unit>() {
                 @Override
                 // 콜백 메서드 ,
@@ -97,36 +90,15 @@ public class MainActivity extends AppCompatActivity {
                     if(oAuthToken!=null){
                         // 토큰이 전달된다면 로그인이 성공한 것이고 토큰이 전달되지 않으면 로그인 실패한다.
                         updateKakaoLoginUi();
-
                     }else {
                         //로그인 실패
                         Log.e(TAG, "invoke: login fail" );
                     }
-
                     return null;
                 }
             };
         }
 
-
-        Function2<OAuthToken,Throwable, Unit> callback = new Function2<OAuthToken, Throwable, Unit>() {
-            @Override
-            // 콜백 메서드 ,
-            public Unit invoke(OAuthToken oAuthToken, Throwable throwable) {
-                Log.e(TAG,"CallBack Method");
-                //oAuthToken != null 이라면 로그인 성공
-                if(oAuthToken!=null){
-                    // 토큰이 전달된다면 로그인이 성공한 것이고 토큰이 전달되지 않으면 로그인 실패한다.
-                    updateKakaoLoginUi();
-
-                }else {
-                    //로그인 실패
-                    Log.e(TAG, "invoke: login fail" );
-                }
-
-                return null;
-            }
-        };
 
         // 로그인 버튼 클릭 리스너
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -154,6 +126,22 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    Function2<OAuthToken,Throwable, Unit> callback = new Function2<OAuthToken, Throwable, Unit>() {
+        @Override
+        // 콜백 메서드 ,
+        public Unit invoke(OAuthToken oAuthToken, Throwable throwable) {
+            Log.e(TAG,"CallBack Method");
+            //oAuthToken != null 이라면 로그인 성공
+            if(oAuthToken!=null){
+                // 토큰이 전달된다면 로그인이 성공한 것이고 토큰이 전달되지 않으면 로그인 실패한다.
+                updateKakaoLoginUi();
+            }else {
+                //로그인 실패
+                Log.e(TAG, "invoke: login fail" );
+            }
+            return null;
+        }
+    };
     private void updateKakaoLoginUi() {
 
         // 로그인 여부에 따른 UI 설정

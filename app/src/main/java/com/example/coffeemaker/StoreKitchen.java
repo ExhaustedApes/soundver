@@ -17,7 +17,7 @@ public class StoreKitchen extends AppCompatActivity {
     ToggleButton water, milk, ice, coffee, vanilla, lemon;
     //firstIntent는 받아오는 인텐트, secondIntent는 보내는 인텐트
     Intent firstIntent, secondIntent;
-    int order;
+    int order, client_num;
 
     // boolean data for check order completion with result
     boolean waterOn, milkOn, iceOn, coffeeOn, vanillaOn, lemonOn;
@@ -31,6 +31,7 @@ public class StoreKitchen extends AppCompatActivity {
         Context context=getApplicationContext();
         firstIntent=getIntent();
         order = firstIntent.getIntExtra("order_idx", -1);
+        client_num = firstIntent.getIntExtra("client_idx", -1);
 
         btnDone=(Button)findViewById(R.id.done_button);
         water=(ToggleButton)findViewById(R.id.water_toggle);
@@ -51,31 +52,6 @@ public class StoreKitchen extends AppCompatActivity {
                 vanillaOn=vanilla.isChecked();
                 lemonOn=lemon.isChecked();
 
-                /*if(coffeeOn){
-                    if (iceOn){
-                        if (waterOn)//coffee+ice+water
-                            beverage="ICED_AMERICANO";
-                        else if (milkOn)//coffee+ice+milk
-                            beverage="ICED_LATTE";
-                    }
-                    else if (waterOn)//coffee+water
-                        beverage="HOT_AMERICANO";
-                    else if (milkOn)//coffee+milk
-                        beverage="HOT_LATTE";
-                }
-
-                else if (iceOn) {
-                    if(waterOn)//ice+water
-                        beverage="ICED_WATER";
-                    else if (milkOn)//ice+milk
-                        beverage="ICED_MILK";
-                }
-
-                else if (waterOn)//water
-                    beverage="HOT_WATER";
-                else if (milkOn)//milk
-                    beverage="HOT_MILK";*/
-
                 secondIntent = new Intent(context, StoreHall.class);
                 secondIntent.putExtra("is_waterOn", waterOn);
                 secondIntent.putExtra("is_coffeeOn", coffeeOn);
@@ -85,6 +61,7 @@ public class StoreKitchen extends AppCompatActivity {
                 secondIntent.putExtra("is_lemonOn", lemonOn);
                 secondIntent.putExtra("intent_index", 1);
                 secondIntent.putExtra("order_index", order);
+                secondIntent.putExtra("client_idx", client_num);
                 startActivity(secondIntent);
                 finish();
             }

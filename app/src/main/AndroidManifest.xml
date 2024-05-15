@@ -15,11 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CoffeeMaker"
         tools:targetApi="31">
-        <activity
-            android:name=".KakaoLogin"
-            android:exported="false"
-            android:screenOrientation="landscape"
-            android:theme="@style/SplashTheme" />
+
         <!--
         <activity
             android:name=".StoreHall2"
@@ -51,7 +47,8 @@
             android:name=".StoreHall"
             android:exported="false"
             android:screenOrientation="landscape"
-            android:theme="@style/SplashTheme" />
+            android:theme="@style/SplashTheme">
+        </activity>
         <activity
             android:name=".SplashActivity"
             android:exported="true"
