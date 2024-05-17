@@ -33,12 +33,13 @@ public class StoreHall extends AppCompatActivity {
     int past_order;//손님이 주문했던 내용
     int past_client;//방문했던 손님 이미지
     int past_weather=-1;
+    int beverage_completion;//제조음료 완성도
+    Random random = new Random();
 
     Boolean waterOn, milkOn, coffeeOn, iceOn, vanillaOn, lemonOn;//제조음료의 재료 포함 여부
 
     Intent firstIntent, secondIntent, thirdIntent;//firstIntent는 kitchen에서 데이터 받아오는 인텐트, secondIntent는 kitchen으로 데이터 보내고 화면 전환하는 인텐트
 
-    int beverage_completion;//제조음료 완성도
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,11 +53,8 @@ public class StoreHall extends AppCompatActivity {
         reStart=(Button)findViewById(R.id.getNewCliet);
         backGroundImg=(LinearLayout)findViewById(R.id.bg);
 
-
-        Random random = new Random();
-
         firstIntent = getIntent();
-        getIntent = firstIntent.getIntExtra("intent_index", 0);
+        getIntent = firstIntent.getIntExtra("intent_index", -1);
         past_order = firstIntent.getIntExtra("order_index", -1);
         past_client = firstIntent.getIntExtra("client_idx", -1);
         past_weather = firstIntent.getIntExtra("weather_idx", -1);
@@ -78,23 +76,19 @@ public class StoreHall extends AppCompatActivity {
                     thirdIntent = new Intent(getApplicationContext(), StoreHall.class);
                     startActivity(thirdIntent);
                     finish();
-
                 }
             });
         }
 
         if(getIntent!=1) {
             time = random.nextInt(5000);
-
             order = random.nextInt(10);
             clientNum = random.nextInt(7);
             weather = random.nextInt(4);
 
-            showWeather(weather);
-            //손님의 주문 표시
-            showOrder(order);
-            //손님 이미지 표시
-            showClient(order, clientNum, time, getIntent, clientImg, clientOrder, moveKitchen);
+            showWeather(weather);//날씨별 배경 표시
+            showOrder(order);//손님의 주문 표시
+            showClient(order, clientNum, time, getIntent, clientImg, clientOrder, moveKitchen);//손님 이미지 표시
         }
 
         moveKitchen.setOnClickListener(new View.OnClickListener() {
