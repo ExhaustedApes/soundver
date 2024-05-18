@@ -32,7 +32,6 @@ public class StoreKitchen extends AppCompatActivity {
         firstIntent=getIntent();
         order = firstIntent.getIntExtra("order_idx", -1);
         client_num = firstIntent.getIntExtra("client_idx", -1);
-        weather_num = firstIntent.getIntExtra("weather_idx", -1);
 
         btnDone=(Button)findViewById(R.id.done_button);
         water=(ToggleButton)findViewById(R.id.water_toggle);
@@ -63,7 +62,6 @@ public class StoreKitchen extends AppCompatActivity {
                 secondIntent.putExtra("intent_index", 1);
                 secondIntent.putExtra("order_index", order);
                 secondIntent.putExtra("client_idx", client_num);
-                secondIntent.putExtra("weather_idx", weather_num);
                 startActivity(secondIntent);
                 finish();
             }
