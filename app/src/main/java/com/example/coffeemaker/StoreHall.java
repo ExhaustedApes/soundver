@@ -40,6 +40,7 @@ public class StoreHall extends AppCompatActivity {
     Boolean waterOn, milkOn, coffeeOn, iceOn, vanillaOn, lemonOn;//제조음료의 재료 포함 여부
 
     Intent firstIntent, secondIntent, thirdIntent, fourthIntent;//firstIntent는 kitchen에서 데이터 받아오는 인텐트, secondIntent는 kitchen으로 데이터 보내고 화면 전환하는 인텐트
+    private static final String weatherTAG = "weather";
 
 
     @Override
@@ -68,6 +69,7 @@ public class StoreHall extends AppCompatActivity {
             beverage_completion=checkComplication(firstIntent);
             //음료 만족도별 손님 리뷰 표시
             showReview(beverage_completion);
+            
 
             reStart.setVisibility(View.VISIBLE);
             reStart.setOnClickListener(new View.OnClickListener() {
@@ -289,16 +291,15 @@ public class StoreHall extends AppCompatActivity {
     private void showWeather(Integer weather) {
 
         fourthIntent = getIntent();
-        weather = fourthIntent.getIntExtra("weather", -1);
+        weather = fourthIntent.getIntExtra("weather_index", -1);
 
         if(weather==0) backGroundImg.setBackgroundResource(R.drawable.hall_rain);
-        else if(weather==1) backGroundImg.setBackgroundResource(R.drawable.hall_night);
+        else if(weather==1) backGroundImg.setBackgroundResource(R.drawable.hall_day);
         else if(weather==2) backGroundImg.setBackgroundResource(R.drawable.hall_night_rain);
-        else backGroundImg.setBackgroundResource(R.drawable.hall_day);
+        else backGroundImg.setBackgroundResource(R.drawable.hall_night);
+
+        Log.d("weather", "weather: " + weather);
     }
 
-  /* Log.d("weather", "weather");
-   Log.d("weather_idx","weather_idx");
-*/
 
 }
