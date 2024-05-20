@@ -1,3 +1,4 @@
+
 package com.example.coffeemaker;
 
 import android.content.Intent;
@@ -33,72 +34,71 @@ public class MainActivity extends AppCompatActivity {
         startBtn=(Button)findViewById(R.id.buttonStart);
         loginButton=(Button)findViewById(R.id.login);
 
-        if (AuthApiClient.Companion.getInstance().hasToken()) {
-            UserApiClient.Companion.getInstance().accessTokenInfo((accessTokenInfo, error) -> {
-                if (error != null) {
-                    if (error instanceof KakaoSdkError && ((KakaoSdkError) error).isInvalidTokenError()) {
-                        // 로그인 필요
-                        Function2<OAuthToken,Throwable, Unit> callback = new Function2<OAuthToken, Throwable, Unit>() {
-                            @Override
-                            // 콜백 메서드 ,
-                            public Unit invoke(OAuthToken oAuthToken, Throwable throwable) {
-                                Log.e(TAG,"CallBack Method");
-                                //oAuthToken != null 이라면 로그인 성공
-                                if(oAuthToken!=null){
-                                    // 토큰이 전달된다면 로그인이 성공한 것이고 토큰이 전달되지 않으면 로그인 실패한다.
-                                    updateKakaoLoginUi();
-                                }else {
-                                    //로그인 실패
-                                    Log.e(TAG, "invoke: login fail" );
+    if (AuthApiClient.Companion.getInstance().hasToken()) {
+                UserApiClient.Companion.getInstance().accessTokenInfo((accessTokenInfo, error) -> {
+                    if (error != null) {
+                        if (error instanceof KakaoSdkError && ((KakaoSdkError) error).isInvalidTokenError()) {
+                            // 로그인 필요
+                            Function2<OAuthToken,Throwable, Unit> callback = new Function2<OAuthToken, Throwable, Unit>() {
+                                @Override
+                                // 콜백 메서드 ,
+                                public Unit invoke(OAuthToken oAuthToken, Throwable throwable) {
+                                    Log.e(TAG,"CallBack Method");
+                                    //oAuthToken != null 이라면 로그인 성공
+                                    if(oAuthToken!=null){
+                                        // 토큰이 전달된다면 로그인이 성공한 것이고 토큰이 전달되지 않으면 로그인 실패한다.
+                                        updateKakaoLoginUi();
+                                    }else {
+                                        //로그인 실패
+                                        Log.e(TAG, "invoke: login fail" );
+                                    }
+                                    return null;
                                 }
-                                return null;
-                            }
-                        };
+                            };
+                        } else {
+                            // 기타 에러
+                            Function2<OAuthToken,Throwable, Unit> callback = new Function2<OAuthToken, Throwable, Unit>() {
+                                @Override
+                                // 콜백 메서드 ,
+                                public Unit invoke(OAuthToken oAuthToken, Throwable throwable) {
+                                    Log.e(TAG,"CallBack Method");
+                                    //oAuthToken != null 이라면 로그인 성공
+                                    if(oAuthToken!=null){
+                                        // 토큰이 전달된다면 로그인이 성공한 것이고 토큰이 전달되지 않으면 로그인 실패한다.
+                                        updateKakaoLoginUi();
+                                    }else {
+                                        //로그인 실패
+                                        Log.e(TAG, "invoke: login fail" );
+                                    }
+                                    return null;
+                                }
+                            };
+                        }
                     } else {
-                        // 기타 에러
-                        Function2<OAuthToken,Throwable, Unit> callback = new Function2<OAuthToken, Throwable, Unit>() {
-                            @Override
-                            // 콜백 메서드 ,
-                            public Unit invoke(OAuthToken oAuthToken, Throwable throwable) {
-                                Log.e(TAG,"CallBack Method");
-                                //oAuthToken != null 이라면 로그인 성공
-                                if(oAuthToken!=null){
-                                    // 토큰이 전달된다면 로그인이 성공한 것이고 토큰이 전달되지 않으면 로그인 실패한다.
-                                    updateKakaoLoginUi();
-                                }else {
-                                    //로그인 실패
-                                    Log.e(TAG, "invoke: login fail" );
-                                }
-                                return null;
-                            }
-                        };
-                    }
-                } else {
-                    // 토큰 유효성 체크 성공(필요 시 토큰 갱신됨)
-                    updateKakaoLoginUi();
-                }
-                return Unit.INSTANCE;
-            });
-        } else {
-            // 로그인 필요
-            Function2<OAuthToken,Throwable, Unit> callback = new Function2<OAuthToken, Throwable, Unit>() {
-                @Override
-                // 콜백 메서드 ,
-                public Unit invoke(OAuthToken oAuthToken, Throwable throwable) {
-                    Log.e(TAG,"CallBack Method");
-                    //oAuthToken != null 이라면 로그인 성공
-                    if(oAuthToken!=null){
-                        // 토큰이 전달된다면 로그인이 성공한 것이고 토큰이 전달되지 않으면 로그인 실패한다.
+                        // 토큰 유효성 체크 성공(필요 시 토큰 갱신됨)
                         updateKakaoLoginUi();
-                    }else {
-                        //로그인 실패
-                        Log.e(TAG, "invoke: login fail" );
                     }
-                    return null;
-                }
-            };
-        }
-
+                    return Unit.INSTANCE;
+                });
+            } else {
+                // 로그인 필요
+                Function2<OAuthToken,Throwable, Unit> callback = new Function2<OAuthToken, Throwable, Unit>() {
+                    @Override
+                    // 콜백 메서드 ,
+                    public Unit invoke(OAuthToken oAuthToken, Throwable throwable) {
+                        Log.e(TAG,"CallBack Method");
+                        //oAuthToken != null 이라면 로그인 성공
+                        if(oAuthToken!=null){
+                            // 토큰이 전달된다면 로그인이 성공한 것이고 토큰이 전달되지 않으면 로그인 실패한다.
+                            updateKakaoLoginUi();
+                        }else {
+                            //로그인 실패
+                            Log.e(TAG, "invoke: login fail" );
+                        }
+                        return null;
+                    }
+                };
+            }
 
         // 로그인 버튼 클릭 리스너
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -170,3 +170,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 }
+
+
+
