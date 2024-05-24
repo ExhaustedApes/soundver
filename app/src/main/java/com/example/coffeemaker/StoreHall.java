@@ -25,7 +25,6 @@ public class StoreHall extends AppCompatActivity {
 
 
     int getIntent=0;//Kitchen에서 Intent 받았는지 확인용 변수
-
     int order=-1;//무작위로 생성되는 손님의 주문
     int clientNum =-1;//무작위로 생성되는 손님 이미지
     int time;//무작위로 생성되는 손님의 방문까지 걸리는 시간
@@ -40,7 +39,6 @@ public class StoreHall extends AppCompatActivity {
     Boolean waterOn, milkOn, coffeeOn, iceOn, vanillaOn, lemonOn;//제조음료의 재료 포함 여부
 
     Intent firstIntent, secondIntent, thirdIntent, fourthIntent;//firstIntent는 kitchen에서 데이터 받아오는 인텐트, secondIntent는 kitchen으로 데이터 보내고 화면 전환하는 인텐트
-    private static final String weatherTAG = "weather";
 
 
     @Override
@@ -55,14 +53,19 @@ public class StoreHall extends AppCompatActivity {
         reStart=(Button)findViewById(R.id.getNewCliet);
         backGroundImg=(LinearLayout)findViewById(R.id.bg);
 
+
         firstIntent = getIntent();
         getIntent = firstIntent.getIntExtra("intent_index", -1);
         past_order = firstIntent.getIntExtra("order_index", -1);
         past_client = firstIntent.getIntExtra("client_idx", -1);
+        past_weather = firstIntent.getIntExtra("weather_index", -5);
+        weather = firstIntent.getIntExtra("weather_index", -5);
+        Log.d("past weather", past_weather+"");
+        Log.d("weather", weather+"");
 
         if(getIntent==1) {
 
-            showWeather(weather);
+            showWeather(past_weather);
             //주문했던 손님의 이미지 다시 표시
             showClient(past_order, past_client, 0, getIntent, clientImg, clientOrder, moveKitchen);
             //이용자가 만든 음료 완성도 확인
@@ -76,6 +79,7 @@ public class StoreHall extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     thirdIntent = new Intent(getApplicationContext(), StoreHall.class);
+                    thirdIntent.putExtra("weather_index", weather);
                     startActivity(thirdIntent);
                     finish();
                 }
@@ -98,7 +102,7 @@ public class StoreHall extends AppCompatActivity {
                 secondIntent = new Intent(getApplicationContext(), StoreKitchen.class);
                 secondIntent.putExtra("order_idx", order);
                 secondIntent.putExtra("client_idx", clientNum);
-
+                secondIntent.putExtra("weather_index", weather);
                 startActivity(secondIntent);
             }
         });
@@ -289,9 +293,6 @@ public class StoreHall extends AppCompatActivity {
 
     }
     private void showWeather(Integer weather) {
-
-        fourthIntent = getIntent();
-        weather = fourthIntent.getIntExtra("weather_index", -1);
 
         if(weather==0) backGroundImg.setBackgroundResource(R.drawable.hall_rain);
         else if(weather==1) backGroundImg.setBackgroundResource(R.drawable.hall_day);
