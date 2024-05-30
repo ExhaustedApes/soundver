@@ -15,28 +15,53 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CoffeeMaker"
         tools:targetApi="31">
-
-        <!--
         <activity
-            android:name=".StoreHall2"
-            android:exported="false"
+            android:name=".IceBreaking"
             android:screenOrientation="landscape"
-            android:theme="@style/SplashTheme" />
-        -->
+            android:exported="false"
+            android:theme="@style/SplashTheme"/>
         <activity
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-
                 <!-- Redirect URI: "kakao${NATIVE_APP_KEY}://oauth" -->
                 <data
                     android:host="oauth"
                     android:scheme="kakaoe414ebf3d2a0a5f23d76fd14ea6dab67" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:screenOrientation="landscape"
+            android:theme="@style/SplashTheme">
+            <!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            -->
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:screenOrientation="landscape"
+            android:theme="@style/SplashTheme"></activity>
+        <activity
+            android:name=".testAcitivity"
+            android:exported="true"
+            android:screenOrientation="landscape">
+            <!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            -->
         </activity>
         <activity
             android:name=".StoreKitchen"
@@ -45,18 +70,6 @@
             android:theme="@style/SplashTheme" />
         <activity
             android:name=".StoreHall"
-            android:exported="false"
-            android:screenOrientation="landscape"
-            android:theme="@style/SplashTheme">
-
-            <!--<intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
-        </activity>
-        <activity
-            android:name=".SplashActivity"
             android:exported="true"
             android:screenOrientation="landscape"
             android:theme="@style/SplashTheme">
@@ -66,11 +79,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="false"
-            android:screenOrientation="landscape"
-            android:theme="@style/SplashTheme" />
     </application>
 
 </manifest>

@@ -10,6 +10,9 @@
     <string name="order7">색다른 향기가 나는 아메리카노 뜨겁게요.</string><!--핫 바닐라아메리카노-->
     <string name="order8">카페인 없는 시원한 음료 주세요.</string><!--아이스 레몬차-->
     <string name="order9">감기에 걸렸어요... 콜록!</string><!--핫 레몬차-->
+    <string name="order10">아이스 슈렉 주스...</string><!--아이스 녹차라떼-->
+    <string name="order11">따뜻한! 초록!</string><!--핫 녹차라떼-->
+    <string name="order12">딸기랑 우유 주세요</string><!--딸기라떼-->
 
     <string name="orderMessage">client order message</string>
     <string name="goToMake">Make!</string>
@@ -22,6 +25,8 @@
     <string name="milk">Milk</string>
     <string name="vanillaSyrup">Vanilla Syrup</string>
     <string name="lemon">Lemon</string>
+    <string name="greenTea">Greentea Powder</string>
+    <string name="strawberry">Strawberry Puree</string>
 
     <string name="completeMsg100">너무 완벽해요! 모든 게 마음에 들어요.</string>
     <string name="completeMsg85">마음에 들어요. 다음에 또 오고 싶군요.</string>
@@ -29,6 +34,7 @@
     <string name="completeMsg55">흠... 감사합니다.</string>
     <string name="completeMsg40">이게 제가 시킨 음료 맞나요?</string>
     <string name="completeMsg25">뭔가 잘못된 것 같은데요? 맛이 없어요.</string>
-    <string name="completeMsg10">이런 음료를 팔다니... 다신 오고 싶지 않아요.</string>
-    <string name="completeMsg0">지금 나랑 장난하나요?</string>
+    <string name="completeMsg10">지금 장난하세요?</string>
+    <string name="completeMsg0">이걸 돈 받고 팔아? 야 사장 나오라 그래!</string>
+    <string name="completeMsgNegative">저 왜 음료 안 주세요???</string>
 </resources>

@@ -1,36 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StoreHall"
+    tools:context=".testAcitivity"
     android:orientation="vertical"
     android:id="@+id/bg"
-    android:background="@drawable/main">
-
+    android:background="@drawable/main"
+    >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center">
-        <!-- Exp 값을 보여주는 TextView 추가 -->
-        <TextView
-            android:id="@+id/expTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/WTransp"
-            android:textColor="@color/black"
-            android:text="Exp: 0"
-            android:textSize="30dp"
-            android:textStyle="bold"
-            android:layout_margin="10dp"
-            android:layout_gravity="center_horizontal"
-            android:visibility="visible" />
         <ImageView
             android:id="@+id/client"
             android:layout_width="300dp"
             android:layout_height="300dp"
             android:src="@drawable/client"
-            android:visibility="invisible" />
+            android:visibility="invisible"></ImageView>
 
         <TextView
             android:id="@+id/Order"
@@ -38,40 +26,39 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:text="@string/orderMessage"
-            android:textColor="@color/black"
             android:textSize="40dp"
-            android:visibility="invisible" />
+            android:visibility="invisible"></TextView>
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingRight="40dp"
         android:gravity="center|right">
-
-
         <Button
             android:id="@+id/Make"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/WTransp"
+            android:backgroundTint="@color/white"
             android:text="@string/goToMake"
             android:textColor="@color/black"
             android:textSize="30dp"
             android:textStyle="bold"
-            android:visibility="invisible" />
-
+            android:visibility="gone">
+        </Button>
         <Button
             android:id="@+id/getNewCliet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/WTransp"
+            android:backgroundTint="@color/white"
             android:text="@string/getNewClient"
             android:textColor="@color/black"
             android:textSize="30dp"
             android:textStyle="bold"
-            android:visibility="invisible" />
+            android:visibility="gone">
+        </Button>
     </LinearLayout>
+
+
 
 
 </LinearLayout>

@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="right"
-        android:padding="20dp">
+        android:padding="50dp">
 
         <Button
             android:id="@+id/done_button"
@@ -22,58 +22,87 @@
             android:text="@string/complete"
             android:textColor="@color/black"></Button>
     </LinearLayout>
+<!--    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="10dp"></LinearLayout>-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"></LinearLayout>
+        android:layout_height="130dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_gravity="bottom">
+        <ImageButton
+            android:id="@+id/water_toggle"
+            android:layout_width="200px"
+            android:layout_height="200px"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/water"
+            android:contentDescription="@string/water"
+            ></ImageButton>
+        <ImageButton
+            android:id="@+id/milk_toggle"
+            android:layout_width="200px"
+            android:layout_height="200px"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/milk"
+            android:contentDescription="@string/milk"
+            ></ImageButton>
+        <ImageButton
+            android:id="@+id/ice_toggle"
+            android:layout_width="200px"
+            android:layout_height="200px"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/icebucket"
+            android:contentDescription="@string/ice"
+            ></ImageButton>
+        <ImageButton
+            android:id="@+id/coffee_toggle"
+            android:layout_width="200px"
+            android:layout_height="200px"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/coffee"
+            android:contentDescription="@string/coffee"
+            ></ImageButton>
+
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="130dp"
         android:orientation="horizontal"
         android:gravity="center"
         android:layout_gravity="bottom"
-        android:padding="50dp">
-
-        <ToggleButton
-            android:id="@+id/water_toggle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textOn="@string/water"
-            android:textOff="@string/water"
-            ></ToggleButton>
-        <ToggleButton
-            android:id="@+id/milk_toggle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textOn="@string/milk"
-            android:textOff="@string/milk"
-            ></ToggleButton>
-        <ToggleButton
-            android:id="@+id/ice_toggle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textOn="@string/ice"
-            android:textOff="@string/ice"
-            ></ToggleButton>
-        <ToggleButton
-            android:id="@+id/coffee_toggle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textOn="@string/coffee"
-            android:textOff="@string/coffee"
-            ></ToggleButton>
-        <ToggleButton
+        >
+        <ImageButton
             android:id="@+id/vanilla_toggle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textOn="@string/vanillaSyrup"
-            android:textOff="@string/vanillaSyrup"
-            ></ToggleButton>
-        <ToggleButton
+            android:layout_width="200px"
+            android:layout_height="200px"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/vanillasyrup"
+            android:contentDescription="@string/vanillaSyrup"
+            ></ImageButton>
+        <ImageButton
             android:id="@+id/lemon_toggle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textOn="@string/lemon"
-            android:textOff="@string/lemon"
-            ></ToggleButton>
+            android:layout_width="200px"
+            android:layout_height="200px"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/lemonpuree"
+            android:contentDescription="@string/lemon"
+            ></ImageButton>
+        <ImageButton
+            android:id="@+id/matcha_toggle"
+            android:layout_width="200px"
+            android:layout_height="200px"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/greenteapowder"
+            android:contentDescription="@string/greenTea"
+            ></ImageButton>
+        <ImageButton
+            android:id="@+id/strawberry_toggle"
+            android:layout_width="200px"
+            android:layout_height="200px"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/strawberrypuree"
+            android:contentDescription="@string/strawberry"
+            ></ImageButton>
     </LinearLayout>
 </LinearLayout>
