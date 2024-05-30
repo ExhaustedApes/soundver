@@ -77,8 +77,8 @@ public class StoreKitchen extends AppCompatActivity {
         ice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), IceBreaking.class);
-                startActivity(intent);
+                Intent iceIntent = new Intent(getApplicationContext(), IceBreaking.class);
+                startActivity(iceIntent);
 
                 iceOn = !iceOn;
                 ViewGroup.LayoutParams params = ice.getLayoutParams();
@@ -93,7 +93,11 @@ public class StoreKitchen extends AppCompatActivity {
         });
         coffee.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {coffeeOn = !coffeeOn;
+            public void onClick(View v) {
+                Intent coffeeIntent = new Intent(getApplicationContext(), coffeeGrinding.class);
+                startActivity(coffeeIntent);
+
+                coffeeOn = !coffeeOn;
                 ViewGroup.LayoutParams params = coffee.getLayoutParams();
                 if (coffeeOn) {
                     params.width = 300;  // 원하는 너비 (픽셀 단위)
