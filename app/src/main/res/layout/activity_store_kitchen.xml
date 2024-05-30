@@ -30,8 +30,7 @@
         android:layout_height="130dp"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_gravity="bottom"
-        android:padding="20dp">
+        android:layout_gravity="bottom">
         <ImageButton
             android:id="@+id/water_toggle"
             android:layout_width="200px"
@@ -72,7 +71,6 @@
         android:orientation="horizontal"
         android:gravity="center"
         android:layout_gravity="bottom"
-        android:padding="20dp"
         >
         <ImageButton
             android:id="@+id/vanilla_toggle"

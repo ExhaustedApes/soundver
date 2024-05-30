@@ -76,7 +76,11 @@ public class StoreKitchen extends AppCompatActivity {
         });
         ice.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {iceOn = !iceOn;
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), IceBreaking.class);
+                startActivity(intent);
+
+                iceOn = !iceOn;
                 ViewGroup.LayoutParams params = ice.getLayoutParams();
                 if (iceOn) {
                     params.width = 300;  // 원하는 너비 (픽셀 단위)

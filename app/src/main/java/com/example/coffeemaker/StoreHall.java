@@ -10,12 +10,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Random;
 
 public class StoreHall extends AppCompatActivity {
+    private static final String TAG = "storehall";
+    private DBHelper dbHelper;
 
     ImageView clientImg;//손님 이미지
     TextView clientOrder;//손님 주문 대사
@@ -39,19 +42,21 @@ public class StoreHall extends AppCompatActivity {
     Boolean waterOn, milkOn, coffeeOn, iceOn, vanillaOn, lemonOn, matchaOn, strawberryOn;//제조음료의 재료 포함 여부
 
     Intent firstIntent, secondIntent, thirdIntent;//firstIntent는 kitchen에서 데이터 받아오는 인텐트, secondIntent는 kitchen으로 데이터 보내고 화면 전환하는 인텐트
-
+    TextView expTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_store_hall);
+        dbHelper = new DBHelper(this);
 
         clientImg=(ImageView)findViewById(R.id.client);
         clientOrder=(TextView)findViewById(R.id.Order);
         moveKitchen=(Button)findViewById(R.id.Make);
         reStart=(Button)findViewById(R.id.getNewCliet);
         backGroundImg=(LinearLayout)findViewById(R.id.bg);
+        expTextView=(TextView)findViewById(R.id.expTextView);
 
 
         firstIntent = getIntent();
@@ -106,8 +111,19 @@ public class StoreHall extends AppCompatActivity {
                 secondIntent.putExtra("weather_index", weather);
                 secondIntent.putExtra("time_index", time);
                 startActivity(secondIntent);
+
             }
         });
+        // 초기 Exp 값을 가져와서 TextView에 설wjd
+        updateExpTextView();
+    }
+    private void updateExpTextView() {
+        int currentExp = dbHelper.getUserExp("susie0275@naver.com");
+        if (currentExp != -1) {
+            expTextView.setText("Exp: " + currentExp);
+        } else {
+            Log.e(TAG, "사용자 Exp 조회 실패");
+        }
     }
     private class Beverage {
         boolean water, milk, ice, coffee, vanilla, lemon, matcha, strawberry;
@@ -311,6 +327,30 @@ public class StoreHall extends AppCompatActivity {
         else if(beverage_completion>=2) clientOrder.setText(R.string.completeMsg10);
         else if (beverage_completion>=0) clientOrder.setText(R.string.completeMsg0);
 
+        expTextView.setVisibility(View.VISIBLE);
+
+        // Add code here to show the review and update the Exp based on beverage_completion
+
+        // Assume 10 points for each correct ingredient
+        // int expGained = beverage_completion * 10;
+
+        // Get current Exp
+        String userId = "susie0275@naver.com";
+        int currentExp = dbHelper.getUserExp(userId);
+
+        if (currentExp != -1) {
+            int newExp = currentExp + 100;
+            boolean isUpdated = dbHelper.updateUserExp(userId, newExp);
+
+            if (isUpdated) {
+                Toast.makeText(this, "Exp updated successfully!", Toast.LENGTH_SHORT).show();
+                updateExpTextView(); // Update the Exp TextView with the new value
+            } else {
+                Toast.makeText(this, "Failed to update Exp.", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(this, "Failed to retrieve current Exp.", Toast.LENGTH_SHORT).show();
+        }
     }
     private void showOrder(Integer order) {
         if (order==0) clientOrder.setText(R.string.order0);
