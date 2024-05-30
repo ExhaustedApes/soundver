@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".coffeeGrinding">
+
+    <!-- CircleView와 추가 텍스트를 담을 FrameLayout 추가 -->
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- CircleView -->
+        <com.example.coffeemaker.CircleView
+            android:id="@+id/circleView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/grinder" />
+
+        <!-- 추가 텍스트를 표시할 TextView -->
+        <TextView
+            android:id="@+id/additionalTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="선을 따라 그리세요"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:textColor="@android:color/black"/>
+
+    </FrameLayout>
+
+</RelativeLayout>
