@@ -1,6 +1,7 @@
 package com.example.coffeemaker;
 //button -> ice breaking
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -28,6 +29,11 @@ public class IceBreaking extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ice_breaking);
+
+        // 새로운 음악 서비스 시작 : MusicServie2 재생
+        Intent serviceIntent2 = new Intent(this, MusicService2.class);
+        startService(serviceIntent2);
+
 
         imageView = findViewById(R.id.imageView);
         hammerImageView = findViewById(R.id.hammerImageView);

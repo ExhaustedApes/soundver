@@ -1,5 +1,6 @@
 package com.example.coffeemaker;
 
+
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -11,12 +12,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.media.MediaPlayer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Random;
 
 public class StoreHall extends AppCompatActivity {
+
+
     private static final String TAG = "storehall";
     private DBHelper dbHelper;
 
@@ -25,6 +29,8 @@ public class StoreHall extends AppCompatActivity {
     Button moveKitchen, reStart;//눌렀을 때 kitchen.class, StoreHall2.class로 가는 버튼
     Beverage userBeverage;//이용자가 생성한 음료
     LinearLayout backGroundImg;
+
+    private MediaPlayer mediaPlayer;// 딩동 소리를 위한 미디어
 
 
     int getIntent=0;//Kitchen에서 Intent 받았는지 확인용 변수
@@ -49,6 +55,17 @@ public class StoreHall extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_store_hall);
+
+
+
+        // MusicService2 중지
+        Intent serviceIntent2 = new Intent(this, MusicService2.class);
+        stopService(serviceIntent2);
+
+        // 새로운 음악 서비스 시작 : MusicServie1 재생
+        Intent serviceIntent1 = new Intent(this, MusicService1.class);
+        startService(serviceIntent1);
+
         dbHelper = new DBHelper(this);
 
         clientImg=(ImageView)findViewById(R.id.client);
@@ -56,8 +73,8 @@ public class StoreHall extends AppCompatActivity {
         moveKitchen=(Button)findViewById(R.id.Make);
         reStart=(Button)findViewById(R.id.getNewCliet);
         backGroundImg=(LinearLayout)findViewById(R.id.bg);
-        expTextView=(TextView)findViewById(R.id.expTextView);
 
+        expTextView=(TextView)findViewById(R.id.expTextView);
 
         firstIntent = getIntent();
         getIntent = firstIntent.getIntExtra("intent_index", -1);
@@ -316,6 +333,7 @@ public class StoreHall extends AppCompatActivity {
         return beverage;
     }
     private void showReview(Integer beverage_completion) {
+        if(beverage_completion==-1)
 
         if (beverage_completion==-1) clientOrder.setText(R.string.completeMsgNegative);
         else if(beverage_completion==8) clientOrder.setText(R.string.completeMsg100);
@@ -353,6 +371,14 @@ public class StoreHall extends AppCompatActivity {
         }
     }
     private void showOrder(Integer order) {
+        // 주문이 표시되면 음악이 재생됩니다
+        if (mediaPlayer != null) {
+            mediaPlayer.release();
+        }
+        // dingdong.mp3를 재생합니다.
+        mediaPlayer = MediaPlayer.create(this, R.raw.dingdong);
+        mediaPlayer.start();
+
         if (order==0) clientOrder.setText(R.string.order0);
         else if (order == 1) clientOrder.setText(R.string.order1);
         else if (order == 2) clientOrder.setText(R.string.order2);

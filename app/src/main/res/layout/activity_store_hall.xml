@@ -13,8 +13,7 @@
         android:layout_height="wrap_content"
         android:gravity="center">
         <!-- Exp 값을 보여주는 TextView 추가 -->
-        <TextView
-            android:id="@+id/expTextView"
+            <TextView android:id="@+id/expTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/WTransp"
@@ -31,6 +30,8 @@
             android:layout_height="300dp"
             android:src="@drawable/client"
             android:visibility="invisible" />
+
+
 
         <TextView
             android:id="@+id/Order"

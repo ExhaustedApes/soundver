@@ -16,6 +16,10 @@ public class SplashActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_splash);
 
+        // MusicService1 시작
+        Intent serviceIntent1 = new Intent(this, MusicService1.class);
+        startService(serviceIntent1);
+
         moveMain(2000);
     }
 

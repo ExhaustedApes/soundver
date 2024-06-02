@@ -10,7 +10,6 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.bumptech.glide.Glide;
 import com.kakao.sdk.auth.AuthApiClient;
 import com.kakao.sdk.auth.model.OAuthToken;
 import com.kakao.sdk.common.model.KakaoSdkError;
@@ -30,6 +29,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_main);
+
+        // MusicService1 시작
+        Intent serviceIntent1 = new Intent(this, MusicService1.class);
+        startService(serviceIntent1);
 
         startBtn=(Button)findViewById(R.id.buttonStart);
         loginButton=(Button)findViewById(R.id.login);

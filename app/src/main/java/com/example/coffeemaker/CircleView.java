@@ -18,6 +18,11 @@ public class CircleView extends View {
         void onFinishedDrawing();
     }
 
+    public interface OnTouchEventListener {
+        void onStartDrawing();
+        void onStopDrawing();
+    }
+
     private Paint borderPaint;
     private Paint drawPaint;
     private Paint textPaint;
@@ -34,6 +39,7 @@ public class CircleView extends View {
     private float[][] majorPointsCoordinates;
     private float majorPointRadius = 20; // 주요 포인트 인식 반경
     private OnFinishedDrawingListener listener; // 리스너 변수 추가
+    private OnTouchEventListener touchEventListener; // 터치 이벤트 리스너 변수 추가
 
     public CircleView(Context context) {
         super(context);
@@ -147,6 +153,10 @@ public class CircleView extends View {
                     for (int i = 0; i < majorPointCount; i++) {
                         majorPointsPassed[i] = false;
                     }
+                    if (touchEventListener != null) {
+                        touchEventListener.onStartDrawing();
+                        Log.d("CircleView", "onStartDrawing called");
+                    }
                     invalidate();
                     return true;
                 }
@@ -171,6 +181,10 @@ public class CircleView extends View {
                         }
                     } else {
                         Log.d("CircleView", "Drawing not finished.");
+                    }
+                    if (touchEventListener != null) {
+                        touchEventListener.onStopDrawing();
+                        Log.d("CircleView", "onStopDrawing called");
                     }
                     invalidate();
                     return true;
@@ -198,17 +212,22 @@ public class CircleView extends View {
                 }
             }
         }
-        Log.d("CircleView", "Points passed count: " + pointsPassedCount);
     }
 
     private boolean isFinishedDrawing() {
-        boolean allPointsPassed = pointsPassedCount >= 10;
-        Log.d("CircleView", "All points passed: " + allPointsPassed);
-        return allPointsPassed;
+        for (boolean passed : majorPointsPassed) {
+            if (!passed) {
+                return false;
+            }
+        }
+        return true;
     }
 
-    // 리스너를 설정하는 메서드 추가
     public void setOnFinishedDrawingListener(OnFinishedDrawingListener listener) {
         this.listener = listener;
+    }
+
+    public void setOnTouchEventListener(OnTouchEventListener listener) {
+        this.touchEventListener = listener;
     }
 }

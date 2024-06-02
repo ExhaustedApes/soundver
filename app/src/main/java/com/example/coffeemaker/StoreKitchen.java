@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ToggleButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -29,6 +28,14 @@ public class StoreKitchen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_store_kitchen);
+
+        // MusicService1 중지
+        Intent serviceIntent1 = new Intent(this, MusicService1.class);
+        stopService(serviceIntent1);
+
+        // 새로운 음악 서비스 시작 : MusicServie2 재생
+        Intent serviceIntent2 = new Intent(this, MusicService2.class);
+        startService(serviceIntent2);
 
         Context context=getApplicationContext();
         firstIntent=getIntent();
